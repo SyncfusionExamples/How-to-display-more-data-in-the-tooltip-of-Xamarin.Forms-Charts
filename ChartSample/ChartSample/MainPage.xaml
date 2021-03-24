@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:syncfusion="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" xmlns:local="clr-namespace:ChartSample"
+             x:Class="ChartSample.MainPage">
+    <ContentPage.BindingContext>
+        <local:ViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <DataTemplate x:Key="tooltipTemplate">
+            <StackLayout Orientation="Horizontal">
+                <Label TextColor="White">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{}{0} : {1}">
+                            <Binding Path="XValue"/>
+                            <Binding Path="YValue"/>
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+            </StackLayout>
+        </DataTemplate>
+    </ContentPage.Resources>
+    
+    <StackLayout Margin="30">
+        <syncfusion:SfChart  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <syncfusion:SfChart.Title>
+                <syncfusion:ChartTitle Text="Population growth" />
+            </syncfusion:SfChart.Title>
+            <syncfusion:SfChart.PrimaryAxis>
+                <syncfusion:CategoryAxis LabelPlacement="BetweenTicks" ShowMajorGridLines="False">
+                </syncfusion:CategoryAxis>
+            </syncfusion:SfChart.PrimaryAxis>
+            <syncfusion:SfChart.SecondaryAxis>
+                <syncfusion:NumericalAxis EdgeLabelsDrawingMode="Fit" ShowMinorGridLines="False" ShowMajorGridLines="False" >
+                </syncfusion:NumericalAxis>
+            </syncfusion:SfChart.SecondaryAxis>
+            <syncfusion:ColumnSeries x:Name="series" Color="#035afc" EnableTooltip="True" TooltipTemplate="{StaticResource tooltipTemplate}" ItemsSource="{Binding Data}" XBindingPath="XValue" YBindingPath="YValue"/>
+            <syncfusion:SfChart.ChartBehaviors>
+                <syncfusion:ChartTooltipBehavior BackgroundColor="Black"/>
+            </syncfusion:SfChart.ChartBehaviors>
+        </syncfusion:SfChart>
+    </StackLayout>
+</ContentPage>
