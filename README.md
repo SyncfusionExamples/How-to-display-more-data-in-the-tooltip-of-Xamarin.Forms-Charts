@@ -22,6 +22,31 @@ You can customize the tooltip label. For customizing, you need to add an instanc
 
 ![](https://github.com/SyncfusionExamples/How-to-display-more-data-information-in-the-tooltip-of-Xamarin.Forms-Charts/blob/main/Chart-Tooltip-Template.gif)
 
+## Tooltip Template
+You can customize the appearance of the tooltip with your own template by using the [TooltipTemplate](https://help.syncfusion.com/cr/xamarin/Syncfusion.SfChart.XForms.ChartSeries.html#Syncfusion_SfChart_XForms_ChartSeries_TooltipTemplate) property of [Series](https://help.syncfusion.com/cr/xamarin/Syncfusion.SfChart.XForms.ChartSeries.html#). The BindingContext in the data template will be the respective underlying object from ItemsSource.
+
+```xml
+<chart:ColumnSeries ItemsSource="{Binding Data}" XBindingPath="Month" YBindingPath="Value" EnableTooltip="True">
+    <chart:ColumnSeries.TooltipTemplate>
+        <DataTemplate>
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Month :" />
+                    <Label Text="{Binding Month}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Value   :" />
+                    <Label Text="{Binding Value}"/>
+                </StackLayout>
+            </StackLayout>
+        </DataTemplate>
+    </chart:ColumnSeries.TooltipTemplate>
+</chart:ColumnSeries>
+<chart:SfChart.ChartBehaviors>
+   <chart:ChartTooltipBehavior BorderWidth="3" BorderColor="Maroon"/>
+</chart:SfChart.ChartBehaviors>
+
+
 ## See also
 
 * [How to bind the Xamarin.Forms pie chart tooltip to “Others” category values](https://support.syncfusion.com/kb/article/10323/how-to-bind-the-xamarin-forms-pie-chart-tooltip-to-others-category-values?_gl=1*ad28v4*_ga*MzIyMTA2OTEuMTY4NjAzNTEwMg..*_ga_WC4JKKPHH0*MTY5MjYwNjk2My4yNDQuMS4xNjkyNjA2OTczLjUwLjAuMA..*_ga_41J4HFMX1J*MTY5MjYwNjk2My41NS4xLjE2OTI2MDY5NzMuMC4wLjA.)
